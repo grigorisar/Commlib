@@ -42,12 +42,31 @@ def graycode(leng, binary):
     temp = binary
     for i in range(1, leng):
         first_half = temp
-        sec_half = temp
+        sec_half = temp[::-1]
         first_half = ['0' + bit for bit in first_half]
         sec_half = ['1' + bit for bit in sec_half] 
         temp = first_half + sec_half
+
+        
     return temp
 
+def to_dec(arr):
+    return [int(i, 2) for i in arr]
+
+def to_str(arr):
+    return [str(i) for i in arr]
+
+def symbols(m):
+    list = []
+    for k in range(0, m):
+        list.append(2*k -m +1)
+    return list
+
+def match(com, binlist):
+    temp = []
+    for i in binlist:
+        temp.append(com[i])
+    return temp
 # name = "Grigoris Arfanis"
 # # print (toBinary(name))
 # # print (len(gray_code(8)))
@@ -95,19 +114,49 @@ for idx in range(1, len(bin2)):
         
     # print(f'new for pos ' + str(idx) + ' = '+ str(bin2[char]))
 
-print(gray_len1)
-
+gray_len1 = to_str(gray_len1)
+# print(to_dec(gray_len1))
+# print(gray_len1)
 
 
 binary = pad(2, binary)
 gray_len2 = graycode(2, binary)
-print(gray_len2)
-
+gray_len2 = to_str(gray_len2)
+# print(to_dec(gray_len2))
+# print(gray_len2)
 
 binary = pad(3, binary)
 gray_len3 = graycode(3, binary)
-print(gray_len3)
+gray_len3 = to_str(gray_len3)
+# print(to_dec(gray_len3))
+# print(gray_len3)
 
 binary = pad(4, binary)
 gray_len4 = graycode(4, binary)
-print(gray_len4)
+gray_len4 = to_str(gray_len4)
+# print(to_dec(gray_len4))
+# print(gray_len4)
+
+gray = gray_code(1)
+symb = symbols(2)
+m2com = dict(zip(gray, symb))
+print(match(m2com, gray_len1))
+# print(m2com)
+
+gray = gray_code(2)
+symb = symbols(4)
+m4com = dict(zip(gray, symb))
+# print(m4com)
+
+gray = gray_code(3)
+symb = symbols(8)
+m8com = dict(zip(gray, symb))
+# print(m8com)
+
+gray = gray_code(4)
+symb = symbols(16)
+m16com = dict(zip(gray, symb))
+print(m16com)
+print(match(m16com, gray_len4))
+
+
